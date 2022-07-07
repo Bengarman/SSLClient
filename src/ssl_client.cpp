@@ -17,9 +17,8 @@
 //#define ARDUHAL_LOG_LEVEL 5
 //#include <esp32-hal-log.h>
 
-
-#ifndef MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED
-#  error "Please configure IDF framework to include mbedTLS -> Enable pre-shared-key ciphersuites and activate at least one cipher"
+#if !defined(MBEDTLS_KEY_EXCHANGE__SOME__PSK_ENABLED) && !defined(MBEDTLS_KEY_EXCHANGE_SOME_PSK_ENABLED)
+#  warning "Please configure IDF framework to include mbedTLS -> Enable pre-shared-key ciphersuites and activate at least one cipher"
 #endif
 
 const char *pers = "esp32-tls";
